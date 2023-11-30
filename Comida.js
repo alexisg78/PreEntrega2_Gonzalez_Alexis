@@ -16,7 +16,7 @@ class Comida{
     }
 
     muestraDatos(){
-        alert(`Comida:\n   Codigo: ${this.codigo}\n   Nombre: ${this.descripcion}\n   Precio: ${this.precio}\n`)
+        alert(`Comida:\n   Codigo: ${this.codigo}\n   Nombre: ${this.descripcion}\n   Precio: $${this.precio}\n`)
     }
     
 }

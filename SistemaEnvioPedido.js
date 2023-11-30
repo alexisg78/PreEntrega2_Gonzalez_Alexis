@@ -85,7 +85,7 @@ function buscar(){
 }
 
  function buscaComida(){
-    let com = prompt('Ingrese comida a buscar:')
+    let com = prompt('Ingrese comida a buscar:').toLocaleUpperCase()
     const comEncontrada= catalogoComidas.filter( (c) => {return c.descripcion.includes(com)} );
     for (const c of comEncontrada) {
         c.muestraDatos();
@@ -93,7 +93,7 @@ function buscar(){
 }
 
 function buscaCliente(){
-    let nom = prompt('Ingrese nombre del cliente a buscar:')
+    let nom = prompt('Ingrese nombre del cliente a buscar:').toLocaleUpperCase()
     const cliEncontrado= clientes.filter( (c) => {return c.nombre.includes(nom)} );
     for (const c of cliEncontrado) {
         c.muestraDatos();
