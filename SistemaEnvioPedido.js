@@ -4,102 +4,76 @@ let idCliente= 0;
 
 // Comidas
 function agregarComida(){
-    let rta=''
-    do {
-        idComida++;
-        let objComida= new Comida(idComida);
-        objComida.cargaDatos();
-        catalogoComidas.push(objComida);
-
-        do{
-            rta= prompt('Desea dar de alta otra comida? (si/no)').toLocaleLowerCase()
-            if (rta !== 'si' && rta !== 'no'){
-                alert('Su respuesta es incorrecta!')
-            }
-        }while (rta !== 'si' && rta !== 'no')
-
-    } while (rta === 'si');
+    let objComida= new Comida();
+    objComida.cargaDatos();
+    catalogoComidas.push(objComida)
+    
+    let comidasJSON = JSON.stringify(catalogoComidas)
+    localStorage.setItem('catalogoComidas',comidasJSON);
 }
 
 function mostrarCatalogoComidas(){
-    for (const c of catalogoComidas) {
-        // console.log(`Comida:\n   Codigo: ${c.codigo}\n   Nombre: ${c.descripcion}\n   Precio: ${c.precio}\n`)
-        c.muestraDatos();
-    }
+    comidas = JSON.parse(localStorage.getItem('catalogoComidas'));
+    bodyTablaComida.innerHTML = ``; 
+    comidas.forEach((item,index) => {
+        bodyTablaComida.innerHTML =  bodyTablaComida.innerHTML +
+            `<tr>
+                <th>${index + 1}</th>
+                <td>${item.descripcion}</td>
+                <td>$${item.precio}</td>
+            </tr>    
+        `;
+    });
+
+    // bodyTablaComida.innerHTML = ``; 
+    // catalogoComidas.forEach((item,index) => {
+    //     bodyTablaComida.innerHTML =  bodyTablaComida.innerHTML +
+    //         `<tr>
+    //             <th>${index + 1}</th>
+    //             <td>${item.descripcion}</td>
+    //             <td>$${item.precio}</td>
+    //         </tr>    
+    //     `;
+    // });
 }
+
 //------------------------------------------------------
 // Clientes
 function altaCliente(){
-    let rta=''
-    do {
-        idCliente++
-        let objCliente= new Cliente(idCliente);
-        objCliente.cargaDatos();
-        clientes.push(objCliente);
-
-        do{
-            rta= prompt('Desea dar de alta otro cliente? (si/no)').toLocaleLowerCase()
-            if (rta !== 'si' && rta !== 'no'){
-                alert('Su respuesta es incorrecta!')
-            }
-        }while (rta !== 'si' && rta !== 'no')
-
-    } while (rta === 'si');
+    let objCliente= new Cliente();
+    objCliente.cargaDatos();
+    clientes.push(objCliente);
+    let clientesJSON = JSON.stringify(clientes)
+    localStorage.setItem('clientes',clientesJSON);
 }
 
 function mostrarClientes(){
-    for (const cli of clientes) {
-        // console.log(`Datos del Cliente:\n   Codigo: ${this.codigo}\n   DNI: ${this.dni}\n   Nombre: ${this.nombre}\n   Apellido: ${this.apellido}\n   Domicilio: ${this.domicilio}\n   Tel.: ${this.tel}`)
-        cli.muestraDatos();
-    }
+    cli = JSON.parse(localStorage.getItem('clientes'));
+    bodyTablaCliente.innerHTML = ``; 
+    cli.forEach((item,index) => {
+        bodyTablaCliente.innerHTML =  bodyTablaCliente.innerHTML +
+            `<tr>
+                <th>${index + 1}</th>
+                <td>${item.dni}</td>
+                <td>${item.nombre}</td>
+                <td>${item.apellido}</td>
+                <td>${item.domicilio}</td>
+                <td>${item.tel}</td>
+            </tr>    
+        `;
+    })            
+
+    // bodyTablaCliente.innerHTML = ``; 
+    // clientes.forEach((item,index) => {
+    //     bodyTablaCliente.innerHTML =  bodyTablaCliente.innerHTML +
+    //         `<tr>
+    //             <th>${index + 1}</th>
+    //             <td>${item.dni}</td>
+    //             <td>${item.nombre}</td>
+    //             <td>${item.apellido}</td>
+    //             <td>${item.domicilio}</td>
+    //             <td>${item.tel}</td>
+    //         </tr>    
+    //     `;
+    // })            
 }
-
-//------------------------------------------------------
-// Busquedas - Comidas/Cliente/Pedidos
-
-function buscar(){
-    let rta=''
-    do {
-        do{
-            rta= +prompt(`Menu de Busqueda:\n1- Buscar Comida\n2- Buscar Cliente\n3- Buscar Pedido\n0- Salir`);
-            if (rta < 0  || rta > 3){
-                alert('Su respuesta es incorrecta!')
-            }else{
-                switch (rta) {
-                    case 1:
-                        buscaComida();
-                        break;
-                    case 2:
-                        buscaCliente();
-                        break;
-                    case 3:
-                        //buscaPedido();
-                        alert('Esta funcionalidad aún no se encuentra Implementada.');
-                        break;               
-                }
-            }
-        }while (rta < 0  || rta > 3)
-
-    } while (rta !== 0);
-
-}
-
- function buscaComida(){
-    let com = prompt('Ingrese comida a buscar:').toLocaleUpperCase()
-    const comEncontrada= catalogoComidas.filter( (c) => {return c.descripcion.includes(com)} );
-    for (const c of comEncontrada) {
-        c.muestraDatos();
-    }    
-}
-
-function buscaCliente(){
-    let nom = prompt('Ingrese nombre del cliente a buscar:').toLocaleUpperCase()
-    const cliEncontrado= clientes.filter( (c) => {return c.nombre.includes(nom)} );
-    for (const c of cliEncontrado) {
-        c.muestraDatos();
-    }    
-}
-
-// buscaPedido(){
-        
-// }

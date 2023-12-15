@@ -14,34 +14,11 @@ class Cliente {
 
         cargaDatos(){
             this.codigo= this.codigo;
-            this.dni= prompt('Ingrese DNI: ').toLocaleUpperCase()
-            this.nombre= prompt('Ingrese Nombre: ').toLocaleUpperCase()
-            this.apellido= prompt('Ingrese Apellido: ').toLocaleUpperCase()
-            this.domicilio= prompt('Ingrese Domicilio: ').toLocaleUpperCase()
-            this.tel= prompt('Ingrese TEL.: ').toLocaleUpperCase()
+            this.dni= inputDni.value.toLocaleUpperCase()
+            this.nombre= inputNombre.value.toLocaleUpperCase() 
+            this.apellido= inputApellido.value.toLocaleUpperCase()
+            this.domicilio= inputDireccion.value.toLocaleUpperCase()
+            this.tel= inputTel.value.toLocaleUpperCase()
         }
-
-        muestraDatos(){
-            alert(`Datos del Cliente:\n   Codigo: ${this.codigo}\n   DNI: ${this.dni}\n   Nombre: ${this.nombre}\n   Apellido: ${this.apellido}\n   Domicilio: ${this.domicilio}\n   Tel.: ${this.tel}`)
-        }            
         
-        // getDni(){
-        //     return this.dni
-        // }
- 
-        // getNombre(){
-        //     return this.nombre
-        // }
- 
-        // getApellido(){
-        //     return this.apellido
-        // }
- 
-        // getDomicilio(){
-        //     return this.domicilio
-        // }
-
-        // getTel(){
-        //     return this.tel
-        // }
 }
